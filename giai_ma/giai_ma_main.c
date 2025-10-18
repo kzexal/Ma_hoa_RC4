@@ -50,7 +50,7 @@ int main() {
 
     // =================================================================
     // >>> CHỈ CẦN DÁN CHUỖI HEX CỦA BẠN VÀO ĐÂY <<<
-    const char *hex_ciphertext = "4736F7B15413DE84887E44B3689DC35DB0552B0136FFBA884C19242164FDACD2E92C1B6D963F42D723F0";
+    const char *hex_ciphertext = "477A457EC2DA2E943EC2D8D32E2EAE3C4DEFDF375C64DD55E74AF78F82FF17C38452CBA7B2CA1B878374";
     // =================================================================
     
     size_t key_len = strlen((const char*)key);
