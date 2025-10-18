@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build RC4 Project",
+            "type": "shell",
+            "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
+            "args": [
+                "-g",
+                "${file}",
+                "${workspaceFolder}/thu_vien/RC4.c",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.exe",
+                "-I",
+                "${workspaceFolder}/thu_vien"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ]
+}
