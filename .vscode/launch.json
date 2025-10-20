@@ -1,0 +1,51 @@
+{
+    // Configurations to debug the ma_hoa and giai_ma binaries produced by the workspace build tasks.
+    // Uses the C/C++ extension 'cppdbg' with gdb from MSYS2 UCRT64. Adjust miDebuggerPath if your GDB is elsewhere.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug ma_hoa_main.exe",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ma_hoa/ma_hoa_main.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/ma_hoa",
+            "environment": [],
+            "externalConsole": false,
+            "internalConsoleOptions": "neverOpen",
+            "preLaunchTask": "Build ma_hoa_main",
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Debug giai_ma_main.exe",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/giai_ma/giai_ma_main.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/giai_ma",
+            "environment": [],
+            "externalConsole": false,
+            "internalConsoleOptions": "neverOpen",
+            "preLaunchTask": "Build giai_ma_main",
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

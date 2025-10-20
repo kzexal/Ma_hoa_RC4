@@ -2,6 +2,48 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Build ma_hoa_main",
+            "type": "shell",
+            "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
+            "args": [
+                "-g",
+                "${workspaceFolder}/ma_hoa/ma_hoa_main.c",
+                "${workspaceFolder}/thu_vien/RC4.c",
+                "-o",
+                "${workspaceFolder}/ma_hoa/ma_hoa_main.exe",
+                "-I",
+                "${workspaceFolder}/thu_vien"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build giai_ma_main",
+            "type": "shell",
+            "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
+            "args": [
+                "-g",
+                "${workspaceFolder}/giai_ma/giai_ma_main.c",
+                "${workspaceFolder}/thu_vien/RC4.c",
+                "-o",
+                "${workspaceFolder}/giai_ma/giai_ma_main.exe",
+                "-I",
+                "${workspaceFolder}/thu_vien"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
             "label": "Build RC4 Project",
             "type": "shell",
             "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe",

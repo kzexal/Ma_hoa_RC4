@@ -1,4 +1,4 @@
-#include "C:\Users\buidu\OneDrive\Máy tính\code\RC4\thu_vien\RC4.h"  // Đường dẫn tương đối đến file .h
+#include "../thu_vien/RC4.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -13,7 +13,7 @@ void print_hex(const char* label, const unsigned char* data, size_t len) {
 
 int main() {
 
-    rc4_state state;
+    trang_thai_rc4 s;
     //key
     const unsigned char key[] = "Khanh";
 
@@ -30,10 +30,10 @@ int main() {
 
 
     // KSA: Chuẩn bị mảng S
-    rc4_ksa(&state, key, key_len);
+    rc4_ksa(&s, key, key_len);
 
     // PRGA & Crypt: Mã hóa
-    rc4_prga_crypt(&state, plaintext, data_len);
+    rc4_prga_crypt(&s, plaintext, data_len);
 
 
     //In kết quả

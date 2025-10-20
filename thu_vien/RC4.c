@@ -8,43 +8,43 @@ static void swap_bytes(unsigned char *a, unsigned char *b) {
 }
 
 // Giai đoạn KSA (Key-Scheduling Algorithm) theo RFC 6229
-void rc4_ksa(rc4_state *state, const unsigned char *key, size_t key_len) {
+void rc4_ksa(trang_thai_rc4 *s, const unsigned char *key, size_t key_len) {
     unsigned char j = 0;
 
     // Khởi tạo mảng S với giá trị từ 0 đến 255
     for (int i = 0; i < 256; i++) {
-        state->S[i] = (unsigned char)i;
+        s->S[i] = (unsigned char)i;
     }
 
     // Xáo trộn mảng S dựa trên khóa
     for (int i = 0; i < 256; i++) {
-        j = (j + state->S[i] + key[i % key_len]) & 0xFF;  // Sử dụng & 0xFF thay vì % 256
-        swap_bytes(&state->S[i], &state->S[j]);
+        j = (j + s->S[i] + key[i % key_len]) & 0xFF;  // Sử dụng & 0xFF thay vì % 256
+        swap_bytes(&s->S[i], &s->S[j]);
     }
 
     // Khởi tạo chỉ số cho PRGA
-    state->i = 0;
-    state->j = 0;
+    s->i = 0;
+    s->j = 0;
 }
 
 // Giai đoạn PRGA (Pseudo-Random Generation Algorithm) và mã hóa/giải mã theo RFC 6229
-void rc4_prga_crypt(rc4_state *state, unsigned char *data, size_t data_len) {
-    unsigned char i = state->i;
-    unsigned char j = state->j;
+void rc4_prga_crypt(trang_thai_rc4 *s, unsigned char *data, size_t data_len) {
+    unsigned char i = s->i;
+    unsigned char j = s->j;
 
     for (size_t n = 0; n < data_len; n++) {
-        i = (i + 1) & 0xFF;  // Sử dụng & 0xFF thay vì % 256
-        j = (j + state->S[i]) & 0xFF;
-        swap_bytes(&state->S[i], &state->S[j]);
+        i = (i + 1) & 0xFF;
+        j = (j + s->S[i]) & 0xFF;
+        swap_bytes(&s->S[i], &s->S[j]);
 
         // Tạo byte của keystream
-        unsigned char k = state->S[(state->S[i] + state->S[j]) & 0xFF];
+        unsigned char k = s->S[(s->S[i] + s->S[j]) & 0xFF];
 
         // XOR với dữ liệu để mã hóa/giải mã
         data[n] ^= k;
     }
 
     // Lưu lại trạng thái i, j (nếu muốn tiếp tục mã hóa trên cùng một stream)
-    state->i = i;
-    state->j = j;
+    s->i = i;
+    s->j = j;
 }

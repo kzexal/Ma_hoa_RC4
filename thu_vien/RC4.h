@@ -9,10 +9,10 @@ typedef struct {
     unsigned char S[256];
     unsigned char i;
     unsigned char j;
-} rc4_state;
+} trang_thai_rc4;
 
-void rc4_ksa(rc4_state *state, const unsigned char *key, size_t key_len);
+void rc4_ksa(trang_thai_rc4 *s, const unsigned char *key, size_t key_len);
 
-void rc4_prga_crypt(rc4_state *state, unsigned char *data, size_t data_len);
+void rc4_prga_crypt(trang_thai_rc4 *s, unsigned char *data, size_t data_len);
 
 #endif

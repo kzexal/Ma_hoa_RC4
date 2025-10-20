@@ -1,7 +1,7 @@
-#include "C:\Users\buidu\OneDrive\Máy tính\code\RC4\thu_vien\RC4.h"
+#include "../thu_vien/RC4.h"
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h> 
+#include <stdlib.h>
 
 unsigned char hex_char_to_byte(const char *hex_pair) {
     char byte_str[3] = { hex_pair[0], hex_pair[1], '\0' };
@@ -27,7 +27,7 @@ size_t hex_string_to_bytes(const char *hex_string, unsigned char *byte_array) {
 
 
 int main() {
-    rc4_state state;
+    trang_thai_rc4 s;
 
     // Key
     const unsigned char key[] = "Khanh";
@@ -61,8 +61,8 @@ int main() {
         return 1;
     }
 
-    rc4_ksa(&state, key, key_len);
-    rc4_prga_crypt(&state, byte_ciphertext, data_len);
+    rc4_ksa(&s, key, key_len);
+    rc4_prga_crypt(&s, byte_ciphertext, data_len);
 
     // In kết quả
     byte_ciphertext[data_len] = '\0';
